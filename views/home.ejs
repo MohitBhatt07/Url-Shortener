@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>URL Shortener</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    "
+  >
+    <header style="background-color: #333; color: #fff; padding: 20px">
+      <h1>URL Shortener</h1>
+    </header>
+    <main style="padding: 20px">
+      <form
+        action="/url"
+        method="post"
+        style="
+          max-width: 400px;
+          margin: auto;
+          background-color: #fff;
+          padding: 40px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        "
+      >
+        <label for="url" style="display: block; margin-bottom: 10px"
+          >Enter the URL to shorten:</label
+        >
+        <input
+          type="url"
+          id="url"
+          name="url"
+          style="
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          "
+          placeholder="https://example.com"
+          required
+        />
+        <button
+          type="submit"
+          style="
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+        >
+          Shorten
+        </button>
+      </form>
+      <% if (locals.id) { %>
+      <div
+        style="
+          max-width: 400px;
+          margin: 30px auto;
+          background-color: rgb(168, 223, 15);
+          padding: 20px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        "
+      >
+        <h2>Your Shortened URL:</h2>
+        <p style="word-break: break-all">
+          <a
+            href="http://localhost:8000/url/<%= id %>"
+            target="_blank"
+            style="
+              text-decoration: underline;
+              color: #f81111;
+              font-weight: bold;
+            "
+            >localhost:8000/url/<%= id %></a
+          >
+        </p>
+      </div>
+      <% } %>
+
+      <div style="margin-top: 20px;">
+        <% if (locals.allUsers) { %>
+          <table style="border-collapse: collapse; width: 100%; margin: 20px; border: 1px solid #ccc;">
+              <thead style="background-color: #333; color: #fff;">
+                  <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">S.no</th>
+                  <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">Short ID</th>
+                  <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">Redirect Url</th>
+                  <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">Generated Url</th>
+                  <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">Total Clicks</th>
+                  <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">Delete</th>
+                </thead>
+              <tbody>
+                  <% allUsers.forEach((user, index) => { %>
+                  <tr>
+                      <td style="border: 1px solid #ccc; padding: 10px;"><%= index + 1 %></td>
+                      <td style="border: 1px solid #ccc; padding: 10px;"><%= user.shortId %></td>
+                      <td style="border: 1px solid #ccc; padding: 10px;"><%= user.redirectUrl %></td>
+                      <td style="border: 1px solid #ccc; padding: 10px;">
+                          <a
+                              href="http://localhost:8000/url/<%= user.shortId %>"
+                              target="_blank"
+                              style="
+                                  text-decoration: underline;
+                                  color: #f81111;
+                                  font-weight: bold;
+                              "
+                              >localhost:8000/url/<%= user.shortId %></a
+                          >
+                      </td>
+                      <td style="border: 1px solid #ccc; padding: 10px;"><%= user.visitHistory.length %></td>
+                      <td style="border: 1px solid #ccc; padding: 10px;">
+                        <form action="/url/delete/<%= user.shortId %>" method="post">
+                          <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Delete</button>
+                        </form>
+                      </td>
+                    </tr>
+                  <% }) %>
+              </tbody>
+          </table>
+          <% } %>
+      </div>
+    </main>
+    <footer style="background-color: #333; color: #fff; padding: 20px">
+      &copy; 2023 URL Shortener. All rights reserved.
+    </footer>
+  </body>
+</html>
