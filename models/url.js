@@ -14,7 +14,11 @@ const urlSchema = new mongoose.Schema({
 },
 {
   timestamps : true
-})
+});
+
+urlSchema.methods.deleteEntry = function (callback) {
+  return this.model('url').deleteOne({ _id: this._id }, callback);
+};
 
 const URL = mongoose.model("url",urlSchema);
 

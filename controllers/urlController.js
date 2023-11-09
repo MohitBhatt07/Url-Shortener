@@ -30,7 +30,7 @@ async function deleteEntry(req,res){
   const deleteId = req.params.shortId;
   
   const entry = await URL.deleteOne({shortId : deleteId});
-  res.redirect('/');
-  
+  return res.redirect('/');
+
 }
 module.exports = {getShortId ,getAnalytics ,deleteEntry};

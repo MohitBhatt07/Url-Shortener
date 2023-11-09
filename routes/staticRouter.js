@@ -7,4 +7,11 @@ router.get('/' , async(req,res)=>{
   return res.render("home",{allUsers});
 })
 
+router.get('/user',(req,res)=>{
+  return res.render("signup");
+})
+
+router.get('/user/login',(req,res)=>{
+  return res.render("login")
+})
 module.exports = router;
