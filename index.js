@@ -24,7 +24,6 @@ app.use(express.json());
 app.use('/', checkAuth, staticRouter);
 app.use('/user',userRouter);
 
-
 app.use("/url",restrictUser ,router);
 app.get("/url/:shortId", async (req, res) => {
   
