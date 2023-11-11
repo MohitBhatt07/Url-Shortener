@@ -10,10 +10,10 @@ const staticRouter = require('./routes/staticRouter');
 const userRouter = require('./routes/userRoutes');
 const cookieParser = require("cookie-parser");
 const { restrictUser,checkAuth } = require("./middlewares/auth");
+const dotenv  = require('dotenv');
 
-connectToMongoDB("mongodb://localhost:27017/short-id")
-  .then(() => console.log("mongodb connected"))
-  .catch((err) => console.log(err.message));
+dotenv.config();
+connectToMongoDB();
 
 app.set('view engine' , 'ejs');
 app.set("views" , path.resolve('./views'));
