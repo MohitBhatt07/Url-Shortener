@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const path = require('path');
 const router = require("./routes/urlRoutes");
 const connectToMongoDB = require("./connect");
-const PORT = 8000;
+
 const URL = require("./models/url");
 const app = express();
 const staticRouter = require('./routes/staticRouter');
@@ -14,7 +14,7 @@ const dotenv  = require('dotenv');
 
 dotenv.config();
 connectToMongoDB();
-
+const PORT = process.env.PORT;
 app.set('view engine' , 'ejs');
 app.set("views" , path.resolve('./views'));
 
