@@ -14,7 +14,7 @@ const dotenv  = require('dotenv');
 
 dotenv.config();
 connectToMongoDB();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT ;
 app.set('view engine' , 'ejs');
 app.set("views" , path.resolve('./views'));
 
