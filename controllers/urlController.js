@@ -6,6 +6,7 @@ async function getShortId(req, res) {
   if (!body.url) {
     return res.status(400).json({ message: "required url" });
   }
+
   const shortId = shortid();
 
   await URL.create({
@@ -15,7 +16,7 @@ async function getShortId(req, res) {
     generatedBy : req.user._id
   });
 
-  return res.render("home" ,{ id: shortId });
+  return res.render("home" ,{ id: shortId ,url : body.url});
 }
 
 async function getAnalytics(req,res){

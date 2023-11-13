@@ -1,13 +1,20 @@
 const authMap = new Map();
+const secret = process.env.JWT_SECRET;
+const jwt = require('jsonwebtoken');
 
-const setAuthValues = (id, user)=>{
-  authMap.set(id,user);
-
+const setAuthValues = (user)=>{
+  return jwt.sign({
+    _id : user._id,
+    email : user.email
+  },`${secret}`);
 }
 
-const getAuthValues = (id)=>{
-  return authMap.get(id);
-  
+const getAuthValues = (token)=>{
+  try {
+    return jwt.verify(token,`${secret}`);
+  } catch (error) {
+    return null;
+  }
 }
 
 module.exports = {setAuthValues,getAuthValues}

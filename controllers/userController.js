@@ -25,8 +25,8 @@ async function userLogin(req, res) {
       error: "wrong email or password",
     });
   }
-  const sessionId = uuidv4();
-  setAuthValues(sessionId , user);
+  
+  const sessionId = setAuthValues(user);
   res.cookie("uid" , sessionId);
   return res.redirect('/');
 
