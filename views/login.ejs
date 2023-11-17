@@ -20,7 +20,7 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
         width: 350px;
-        
+
         /* text-align: center; */
       }
 
@@ -39,7 +39,11 @@
         text-align: left;
         font-weight: bold;
       }
-
+      .signup{
+        margin-bottom: 20px;
+        display: flex;
+        gap: 20px;
+      }
       input[type="email"],
       input[type="password"] {
         width: 80%;
@@ -64,10 +68,14 @@
     <div class="signup-container">
       <h1>LOGIN</h1>
       <form action="/user/login" method="post">
-        
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="john@email.com" />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="john@email.com"
+          />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -79,8 +87,12 @@
           />
         </div>
         <% if (locals.error) { %>
-         <span style="color: red; font-weight: bold;" %>><%= error %></span>
+        <span style="color: red; font-weight: bold" %>><%= error %></span>
         <% } %>
+        <div class="signup">
+          <span>Not a user ?</span>
+          <a href="/user">Signup</a>
+        </div>
         <button type="submit">LOGIN</button>
       </form>
     </div>

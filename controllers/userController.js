@@ -8,6 +8,7 @@ async function userSignup(req, res) {
     name,
     email,
     password,
+    role
   });
   return res.redirect("/user/login")
   
@@ -26,8 +27,8 @@ async function userLogin(req, res) {
     });
   }
   
-  const sessionId = setAuthValues(user);
-  res.cookie("uid" , sessionId);
+  const token = setAuthValues(user);
+  res.cookie("token" , token);
   return res.redirect('/');
 
 }

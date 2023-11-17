@@ -9,7 +9,7 @@ const app = express();
 const staticRouter = require('./routes/staticRouter');
 const userRouter = require('./routes/userRoutes');
 const cookieParser = require("cookie-parser");
-const { restrictUser,checkAuth } = require("./middlewares/auth");
+const { restrictTo,checkForAuthentication } = require("./middlewares/auth");
 const dotenv  = require('dotenv');
 
 dotenv.config();
@@ -21,10 +21,11 @@ app.set("views" , path.resolve('./views'));
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.json());
-app.use('/', checkAuth, staticRouter);
+app.use(checkForAuthentication);
+app.use('/',  staticRouter);
 app.use('/user',userRouter);
 
-app.use("/url",restrictUser ,router);
+app.use("/url",restrictTo(["NORMAL"]) ,router);
 
 app.get("/url/:shortId", async (req, res) => {
   

@@ -92,6 +92,9 @@
               <thead style="background-color: #333; color: #fff;">
                   <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">S.no</th>
                   <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">Short ID</th>
+                  <% if (locals.role) { %>
+                    <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">Created By</th>
+                  <% } %>
                   <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">Redirect Url</th>
                   <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">Generated Url</th>
                   <th style="padding: 10px; font-weight: bold; border: 1px solid #ccc;">Total Clicks</th>
@@ -102,6 +105,9 @@
                   <tr>
                       <td style="border: 1px solid #ccc; padding: 10px;"><%= index + 1 %></td>
                       <td style="border: 1px solid #ccc; padding: 10px;"><%= user.shortId %></td>
+                      <% if (locals.role) { %>
+                        <th style="border: 1px solid #ccc; padding: 10px;"><%= user.generatedBy.generatorName %></th>
+                      <% } %>
                       <td style="border: 1px solid #ccc; padding: 10px;"><%= user.redirectUrl %></td>
                       <td style="border: 1px solid #ccc; padding: 10px;">
                           <a

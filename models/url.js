@@ -12,9 +12,18 @@ const urlSchema = new mongoose.Schema({
   },
   visitHistory : [{timestamps : {type : Number}}],
   generatedBy  : {
-    type : mongoose.Schema.Types.ObjectId,
-    ref  : "users"
+    type: mongoose.SchemaTypes.Mixed,
+    required : true
+    // generatorId : {
+    //   type : mongoose.Schema.Types.ObjectId,
+    //   ref  : "users"
+    // },
+    // generatorName : {
+    //   type : "String",
+    //   required : true
+    // }
   }
+    
 },
 {
   timestamps : true
