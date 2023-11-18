@@ -14,14 +14,7 @@ const urlSchema = new mongoose.Schema({
   generatedBy  : {
     type: mongoose.SchemaTypes.Mixed,
     required : true
-    // generatorId : {
-    //   type : mongoose.Schema.Types.ObjectId,
-    //   ref  : "users"
-    // },
-    // generatorName : {
-    //   type : "String",
-    //   required : true
-    // }
+    
   }
     
 },

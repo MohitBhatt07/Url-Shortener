@@ -13,8 +13,8 @@ router.get('/admin/urls' , restrictTo(["ADMIN"]) , async(req,res) =>{
 
 router.get('/' ,restrictTo(["NORMAL","ADMIN"]), async(req,res)=>{
   
-  const allUsers = await URL.find({generatedBy :{generatorId : req.user._id }});
-  return res.render("home",{allUsers ,url : req.body.url});
+  const allUsers = await URL.find({"generatedBy.generatorId" : req.user._id });
+  return res.render("home",{allUsers });
 })
 
 router.get('/user',(req,res)=>{ 
